@@ -3,7 +3,7 @@ import { AuthContext } from "../../Context/AuthContext";
 
 const PostReview = () => {
   const { user } = use(AuthContext);
-  const userEmail = user.email;
+  const userEmail = user?.email;
   console.log("userEmail", userEmail);
   const currentDate = new Date();
   console.log(currentDate)
@@ -17,7 +17,7 @@ const PostReview = () => {
 
     const newReview = { foodName, foodImage, restaurantName, userEmail, currentDate };
 
-    fetch("http://localhost:3000/allReview", {
+    fetch("http://localhost:3000/postReview", {
       method: "POST",
       headers: {
         "content-type": "application/json",
