@@ -19,7 +19,13 @@ const Navbar = () => {
       <li>
         <NavLink to="/postReview">Add Review</NavLink>
       </li>
+      {
+        user && <><li>
+        <NavLink to="/myReview">My Review</NavLink>
+      </li></>
+      }
     </>
+    
   );
 
   const handleSignOut = () => {

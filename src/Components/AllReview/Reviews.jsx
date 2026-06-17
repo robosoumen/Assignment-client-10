@@ -7,6 +7,7 @@ const Reviews = ({ singleReview }) => {
     userEmail,
     currentDate,
     _id,
+    foodName
   } = singleReview;
   return (
     <div>
@@ -14,11 +15,11 @@ const Reviews = ({ singleReview }) => {
         <div className="card-body">
           <h2 className="card-title">{restaurantName}</h2>
           <p>
-           {userEmail}
+           {foodName}
           </p>
         </div>
         <figure>
-          <img className="w-[400px] h-[200px]"
+          <img className="w-[400px] h-[300px]"
             src={foodImage}
             alt="Shoes"
           />

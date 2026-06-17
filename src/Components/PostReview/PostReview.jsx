@@ -1,12 +1,13 @@
 import React, { use } from "react";
 import { AuthContext } from "../../Context/AuthContext";
+import Swal from "sweetalert2";
 
 const PostReview = () => {
   const { user } = use(AuthContext);
   const userEmail = user?.email;
   console.log("userEmail", userEmail);
-  const currentDate = new Date();
-  console.log(currentDate)
+  const currentDate = new Date().toISOString().split("T")[0];
+  console.log(currentDate);
 
   const handleReview = (e) => {
     e.preventDefault();
@@ -15,7 +16,13 @@ const PostReview = () => {
     const restaurantName = e.target.restaurantName.value;
     // console.log(foodName,foodImage,restaurantName)
 
-    const newReview = { foodName, foodImage, restaurantName, userEmail, currentDate };
+    const newReview = {
+      foodName,
+      foodImage,
+      restaurantName,
+      userEmail,
+      currentDate,
+    };
 
     fetch("http://localhost:3000/postReview", {
       method: "POST",
@@ -27,6 +34,14 @@ const PostReview = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("after post review", data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        e.target.reset()
       });
   };
   return (
