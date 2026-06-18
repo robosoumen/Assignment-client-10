@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import { Link } from "react-router";
@@ -7,6 +7,19 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
+
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+
+  useEffect(()=>{
+     const html = document.querySelector('html');
+      html.setAttribute("data-theme",theme);
+      localStorage.setItem("theme",theme)
+  },[theme])
+
+  const handleTheme = (checked) => {
+   setTheme(checked ? "dark" : "light")
+  };
+
   const links = (
     <>
       <li>
@@ -21,22 +34,23 @@ const Navbar = () => {
       <li>
         <NavLink to="/postReview">Add Review</NavLink>
       </li>
-      {
-        user && <><li>
-        <NavLink to="/myReview">My Review</NavLink>
-      </li></>
-      }
+      {user && (
+        <>
+          <li>
+            <NavLink to="/myReview">My Review</NavLink>
+          </li>
+        </>
+      )}
     </>
-    
   );
 
   const handleSignOut = () => {
     logOut()
       .then(() => {
-        toast.success('signOut successful')
+        toast.success("signOut successful");
       })
       .then((error) => {
-        toast.error(error.message)
+        toast.error(error.message);
       });
   };
   return (
@@ -85,6 +99,9 @@ const Navbar = () => {
               Register
             </Link>
           )}
+        </div>
+        <div>
+         <input onChange={(e) => handleTheme(e.target.checked)} type='checkbox' defaultChecked={localStorage.getItem('theme') === 'dark'} className='toggle'></input>
         </div>
       </div>
     </div>
