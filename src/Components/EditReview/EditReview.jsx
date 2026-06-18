@@ -1,4 +1,5 @@
 import React, { use, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useLoaderData, useParams } from "react-router";
 
 // laptop charge 12:21 pm
@@ -30,7 +31,8 @@ const EditReview = () => {
     .then(data => {
         console.log('after update review data is',data);
         if(data.modifiedCount){
-            alert('update successful')
+            // alert('update successful')
+            toast.success('update successful')
         }
     })
   };

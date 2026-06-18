@@ -1,20 +1,39 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const { signIn, setUser } = use(AuthContext);
+  const { signIn, setUser, googleLogIn } = use(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
 
   const location = useLocation();
-  console.log('location login', location)
-  const navigate = useNavigate()
-  console.log('login navigate', navigate)
+  console.log("location login", location);
+  const navigate = useNavigate();
+  console.log("login navigate", navigate);
 
-// login handler
+  const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+  const handleTogglePassword = (e) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+  };
+
+  // login handler
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+    if (!passwordValidation.test(password)) {
+      console.log("password DidNot match");
+      setPasswordError(
+        "Password must have 6+ character with uppercase & lowercase",
+      );
+      return;
+    }
+
     console.log(email, password);
 
     signIn(email, password)
@@ -22,13 +41,25 @@ const Login = () => {
         console.log(result.user);
         const user = result.user;
         setUser(user);
-        navigate(location.state || '/')
-        console.log('redirect', location.state)
-        console.log('login successful')
+        navigate(location.state || "/");
       })
       .catch((error) => {
         console.log(error);
-        alert(error.message);
+        toast.error(error.message)
+      });
+  };
+
+  //google Log In
+  const googleLogInHandler = (e) => {
+    e.preventDefault();
+
+    googleLogIn()
+      .then((result) => {
+        setUser(result.user);
+        navigate(location.state || "/");
+      })
+      .catch((err) => {
+        toast.error(err.message)
       });
   };
   return (
@@ -49,21 +80,35 @@ const Login = () => {
                     type="email"
                     className="input"
                     placeholder="Your Email"
+                    required
                   />
                   {/* password */}
                   <label className="label">Password</label>
-                  <input
-                    name="password"
-                    type="password"
-                    className="input"
-                    placeholder="Password"
-                  />
+                  <div className="relative">
+                    <input
+                      name="password"
+                      type={showPassword ? "text" : "password"}
+                      className="input"
+                      placeholder="Password"
+                      required
+                    />
+                    <button
+                      onClick={handleTogglePassword}
+                      className="absolute right-6 top-3"
+                    >
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </button>
+                  </div>
+                  {passwordError && <p className="text-red-600">{passwordError}</p>}
                   <div>
                     <a className="link link-hover">Forgot password?</a>
                   </div>
                   <button className="btn btn-neutral mt-4">Login</button>
                   {/* Google */}
-                  <button className="btn bg-white text-black border-[#e5e5e5]">
+                  <button
+                    onClick={googleLogInHandler}
+                    className="btn bg-white text-black border-[#e5e5e5]"
+                  >
                     <svg
                       aria-label="Google logo"
                       width="16"

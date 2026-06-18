@@ -5,16 +5,15 @@ import Swal from "sweetalert2";
 const PostReview = () => {
   const { user } = use(AuthContext);
   const userEmail = user?.email;
-  console.log("userEmail", userEmail);
   const currentDate = new Date().toISOString().split("T")[0];
-  console.log(currentDate);
+  
 
   const handleReview = (e) => {
     e.preventDefault();
     const foodName = e.target.foodName.value;
     const foodImage = e.target.foodImage.value;
     const restaurantName = e.target.restaurantName.value;
-    // console.log(foodName,foodImage,restaurantName)
+   
 
     const newReview = {
       foodName,

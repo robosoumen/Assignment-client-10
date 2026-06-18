@@ -28,7 +28,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/postReview',
-                element:<PostReview></PostReview>
+                element:<PrivateRoute><PostReview></PostReview></PrivateRoute>
             },
             {
                 path:'/profile',

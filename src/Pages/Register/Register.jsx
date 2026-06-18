@@ -2,10 +2,10 @@ import React, { use, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const { setUser, signUp, googleLogIn } = use(AuthContext);
-  const [passwordReg, setPasswordReg] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState("");
 
@@ -29,7 +29,6 @@ const Register = () => {
     console.log(name, email, photo, password);
 
     if (!passwordValidation.test(password)) {
-      console.log("password DidNot match");
       setPasswordError(
         "Password must have 6+ character with uppercase & lowercase",
       );
@@ -40,13 +39,10 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        alert("signUp successful");
-        console.log(user);
         navigate(location.state || "/");
       })
       .catch((error) => {
-        console.log(error);
-        alert(error.message);
+        toast.error(error.message);
       });
   };
 
@@ -55,13 +51,11 @@ const Register = () => {
 
     googleLogIn()
       .then((result) => {
-        console.log(result.user);
         setUser(result.user);
         navigate(location.state || "/");
       })
       .catch((error) => {
-        console.log(error);
-        alert("google log in successful");
+        toast.error(error.message);
       });
   };
 
@@ -83,6 +77,7 @@ const Register = () => {
                     type="text"
                     className="input"
                     placeholder="Your Name"
+                    required
                   />
                   {/* email */}
                   <label className="label">Email</label>
@@ -91,6 +86,7 @@ const Register = () => {
                     type="email"
                     className="input"
                     placeholder="Your Email"
+                    required
                   />
                   {/* image */}
                   <label className="label">Image</label>
@@ -108,6 +104,7 @@ const Register = () => {
                       type={showPassword ? "text" : "password"}
                       className="input"
                       placeholder="Password"
+                      required
                     />
                     <button
                       onClick={handleTogglePassword}
@@ -116,7 +113,9 @@ const Register = () => {
                       {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
                   </div>
-                  {passwordError && <p>{passwordError}</p>}
+                  {passwordError && (
+                    <p className="text-red-600">{passwordError}</p>
+                  )}
                   <div>
                     <a className="link link-hover">Forgot password?</a>
                   </div>
