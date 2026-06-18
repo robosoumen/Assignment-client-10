@@ -6,7 +6,6 @@ const Home = () => {
     console.log(allReviewPromise)
     return (
         <div className='w-11/12 mx-auto'>
-            <p>Home page</p>
             <Suspense fallback={<span className="loading loading-ring loading-xl flex mx-auto my-40"></span>}>
                  <AllReview allReviewPromise={allReviewPromise}></AllReview>
             </Suspense>
