@@ -8,6 +8,7 @@ import MyProfile from "../Components/MyProfile/MyProfile";
 import PrivateRoute from "./PrivateRoute";
 import MyReview from "../Components/MyReview/MyReview";
 import EditReview from "../Components/EditReview/EditReview";
+import MyFavorite from "../Components/MyFavorite/MyFavorite";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
                 path:'/editReview/:id',
                 element:<PrivateRoute><EditReview></EditReview></PrivateRoute>,
                 loader:({params}) => fetch(`http://localhost:3000/userReview/${params.id}`)
+            },
+            {
+                path:'/myFavorite',
+                element:<PrivateRoute><MyFavorite></MyFavorite></PrivateRoute>
+
             }
             
         ]

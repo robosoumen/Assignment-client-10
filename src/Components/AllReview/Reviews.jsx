@@ -1,8 +1,31 @@
 import React from "react";
+import toast from "react-hot-toast";
 
 const Reviews = ({ singleReview }) => {
   const { foodImage, restaurantName, userEmail, currentDate, _id, foodName } =
     singleReview;
+  const favoritePostData = {
+    foodImage: foodImage,
+    foodName: foodName,
+    restaurantName: restaurantName,
+    currentDate: new Date().toISOString().split("T")[0],
+    userEmail: userEmail,
+  };
+
+  const handleAddFavorite = () => {
+    fetch("http://localhost:3000/favorite", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(favoritePostData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Favorite Food Added");
+      });
+  };
 
   return (
     <div className=" p-3">
@@ -11,7 +34,12 @@ const Reviews = ({ singleReview }) => {
           <h2 className="card-title">Restaurant Name:{restaurantName}</h2>
           <div className="flex items-center">
             <p>Food Name:{foodName}</p>
-            <button className="btn bg-red-500 text-white">Add Favorite</button>
+            <button
+              onClick={handleAddFavorite}
+              className="btn bg-red-500 text-white"
+            >
+              Add Favorite
+            </button>
           </div>
         </div>
         <figure>
