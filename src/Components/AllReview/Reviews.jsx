@@ -1,8 +1,9 @@
 import React from "react";
 import toast from "react-hot-toast";
+import { FaStar } from "react-icons/fa";
 
 const Reviews = ({ singleReview }) => {
-  const { foodImage, restaurantName, userEmail, currentDate, _id, foodName } =
+  const { foodImage, restaurantName, userEmail, currentDate, _id, foodName, rating } =
     singleReview;
   const favoritePostData = {
     foodImage: foodImage,
@@ -41,9 +42,19 @@ const Reviews = ({ singleReview }) => {
               Add Favorite
             </button>
           </div>
+          <div className="flex">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <FaStar
+                key={star}
+                className={
+                  star <= rating ? "text-yellow-500" : "text-gray-300"
+                }
+              />
+            ))}
+          </div>
         </div>
         <figure>
-          <img className="w-[400px] h-[300px]" src={foodImage} alt="Shoes" />
+          <img className="w-[400px] h-[300px]" src={foodImage} alt="FoodImage..." />
         </figure>
       </div>
     </div>

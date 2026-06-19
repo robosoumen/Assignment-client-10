@@ -1,19 +1,22 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import Swal from "sweetalert2";
+import { FaStar } from "react-icons/fa";
 
 const PostReview = () => {
   const { user } = use(AuthContext);
   const userEmail = user?.email;
   const currentDate = new Date().toISOString().split("T")[0];
-  
+
+  const [rating, setRating] = useState(0);
 
   const handleReview = (e) => {
     e.preventDefault();
     const foodName = e.target.foodName.value;
     const foodImage = e.target.foodImage.value;
     const restaurantName = e.target.restaurantName.value;
-   
+    const location = e.target.location.value;
+    const text = e.target.textArea.value
 
     const newReview = {
       foodName,
@@ -21,7 +24,20 @@ const PostReview = () => {
       restaurantName,
       userEmail,
       currentDate,
+      location,
+      rating,
+      text
     };
+
+    console.log(newReview)
+    console.log(foodName)
+    console.log(foodImage)
+    console.log(restaurantName)
+    console.log(userEmail)
+    console.log(currentDate)
+    console.log(location)
+    console.log(rating)
+    console.log(text)
 
     fetch("http://localhost:3000/postReview", {
       method: "POST",
@@ -40,7 +56,7 @@ const PostReview = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        e.target.reset()
+        e.target.reset();
       });
   };
   return (
@@ -53,6 +69,7 @@ const PostReview = () => {
             type="text"
             className="input"
             placeholder="Food Name"
+            required
           />
           <label className="label">Food Image</label>
           <input
@@ -67,7 +84,31 @@ const PostReview = () => {
             type="text"
             className="input"
             placeholder="Restaurant Name"
+            required
           />
+          <label className="label">Restaurant Location</label>
+          <input
+            name="location"
+            type="text"
+            className="input"
+            placeholder="Restaurant Location"
+            required
+          />
+          {/* text area */}
+          <textarea name="textArea" rows="8" className="w-full border p-3 rounded" />
+          {/* star */}
+          <div className="flex gap-1">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <FaStar
+                key={star}
+                size={30}
+                onClick={() => setRating(star)}
+                className={`cursor-pointer ${
+                  star <= rating ? "text-yellow-500" : "text-gray-300"
+                }`}
+              />
+            ))}
+          </div>
           <button className="btn btn-neutral mt-4">Submit</button>
         </fieldset>
       </form>
