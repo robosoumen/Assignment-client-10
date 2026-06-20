@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import AllReview from '../AllReview/AllReview';
 import Slider from '../Slider/Slider';
 import QuickRecipe from '../QuickRecipe/QuickRecipe';
+import TipsForCook from '../TipsForCook/TipsForCook';
 
 
 
@@ -22,6 +23,10 @@ const Home = () => {
            <div className='space-y-3 mb-3'>
                 <p className='text-center font-bold text-3xl text-blue-600'>3 easy and quick recipe</p>
                 <QuickRecipe></QuickRecipe>
+           </div>
+           <div className='space-y-3 mb-3'>
+            <p className='text-center font-bold text-3xl text-blue-600'>Cooking Tips & Tricks</p>
+            <TipsForCook></TipsForCook>
            </div>
         </div>
     );

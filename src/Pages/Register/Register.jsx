@@ -97,13 +97,29 @@ const Register = () => {
                     placeholder="PhotoURL"
                   />
                   {/* password */}
-                  <label className="label">Password</label>
+                  <label className="label"></label>
+                   <div className="relative">
+                    <input
+                      name=""
+                      type={showPassword ? "text" : "password"}
+                      className="input"
+                      placeholder="Password"
+                      required
+                    />
+                    <button
+                      onClick={handleTogglePassword}
+                      className=" absolute right-6 top-3"
+                    >
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </button>
+                  </div>
+                  <label className="label">Confirm Password</label>
                   <div className="relative">
                     <input
                       name="password"
                       type={showPassword ? "text" : "password"}
                       className="input"
-                      placeholder="Password"
+                      placeholder="Confirm Password"
                       required
                     />
                     <button

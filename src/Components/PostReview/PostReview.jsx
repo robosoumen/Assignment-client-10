@@ -6,7 +6,7 @@ import { FaStar } from "react-icons/fa";
 const PostReview = () => {
   const { user } = use(AuthContext);
   const userEmail = user?.email;
-  const currentDate = new Date().toISOString().split("T")[0];
+  const currentDate = new Date();
 
   const [rating, setRating] = useState(0);
 
@@ -30,16 +30,6 @@ const PostReview = () => {
       text,
       reviewerName
     };
-
-    console.log(newReview)
-    console.log(foodName)
-    console.log(foodImage)
-    console.log(restaurantName)
-    console.log(userEmail)
-    console.log(currentDate)
-    console.log(location)
-    console.log(rating)
-    console.log(text)
 
     fetch("http://localhost:3000/postReview", {
       method: "POST",
@@ -70,7 +60,7 @@ const PostReview = () => {
             name="reviewerName"
             type="text"
             className="input"
-            placeholder="Food Name"
+            placeholder="Your Name"
             required
           />
           <label className="label">Food Name</label>

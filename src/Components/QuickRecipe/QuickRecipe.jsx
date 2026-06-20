@@ -2,7 +2,7 @@ import React from "react";
 
 const QuickRecipe = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3">
+    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 space-y-3">
       {/* card */}
       <div>
         <div className="card bg-base-100 w-96 shadow-sm">
@@ -14,14 +14,12 @@ const QuickRecipe = () => {
             />
           </figure>
           <div className="card-body items-center text-center">
-            <h2 className="card-title">Card Title</h2>
+            <h2 className="card-title">Fruit Salad</h2>
             <p>
-              A card component has a figure, a body part, and inside body there
-              are title and actions parts
+              A refreshing mix of fresh fruits packed with vitamins, minerals,
+              and natural sweetness. Perfect as a healthy snack or a light
+              dessert for any time of the day.
             </p>
-            <div className="card-actions">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
           </div>
         </div>
       </div>
@@ -35,14 +33,12 @@ const QuickRecipe = () => {
             />
           </figure>
           <div className="card-body items-center text-center">
-            <h2 className="card-title">Card Title</h2>
+            <h2 className="card-title">Noodles</h2>
             <p>
-              A card component has a figure, a body part, and inside body there
-              are title and actions parts
+              A fast and delicious meal made with noodles, vegetables, and
+              savory seasonings. Ideal for busy days when you want something
+              tasty in just a few minutes.
             </p>
-            <div className="card-actions">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
           </div>
         </div>
       </div>
@@ -56,14 +52,13 @@ const QuickRecipe = () => {
             />
           </figure>
           <div className="card-body items-center text-center">
-            <h2 className="card-title">Card Title</h2>
+            <h2 className="card-title">Corn Chaat</h2>
             <p>
-              A card component has a figure, a body part, and inside body there
-              are title and actions parts
+              A spicy and tangy Indian street-style snack made with sweet corn,
+              fresh vegetables, and flavorful spices. It's quick to prepare and
+              bursting with taste and nutrition.
             </p>
-            <div className="card-actions">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
+            
           </div>
         </div>
       </div>
