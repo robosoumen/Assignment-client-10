@@ -1,5 +1,4 @@
 .navbar a.active{
-    color: blue;
-    background-color: rgba(137, 43, 226, 0.308);
+   text-decoration: underline;
+   color: white;
 } 
-

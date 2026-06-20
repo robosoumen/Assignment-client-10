@@ -2,7 +2,6 @@ import React, { use, useEffect, useState } from "react";
 import { NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import { Link } from "react-router";
-import { HiH1 } from "react-icons/hi2";
 import toast from "react-hot-toast";
 import "./Navbar.css";
 
@@ -21,20 +20,6 @@ const Navbar = () => {
     setTheme(checked ? "dark" : "light");
   };
 
-  const links = (
-    <>
-      <li>
-        <NavLink to="/">Home</NavLink>
-      </li>
-      <li>
-        <NavLink to="/profile">My Profile</NavLink>
-      </li>
-      <li>
-        <NavLink to="/register">Register</NavLink>
-      </li>
-    </>
-  );
-
   const handleSignOut = () => {
     logOut()
       .then(() => {
@@ -46,58 +31,122 @@ const Navbar = () => {
   };
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar bg-blue-300 shadow-sm">
         <div className="navbar-start">
-          <img
-            className="h-[50px] w-[70px]"
-            src="https://i.ibb.co/mVx2Zf0m/images.jpg"
-            alt=""
-          />
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {" "}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />{" "}
+              </svg>
+            </div>
+            <ul
+              tabIndex="-1"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <a>Profile</a>
+                <ul className="p-2">
+                  <li className="bg-blue-300">
+                    <NavLink to="/myFavorite">My Favorite</NavLink>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                {user ? (
+                <li onClick={handleSignOut} className="">
+                  SignOut
+                </li>
+              ) : (
+                <NavLink to="/register">Register</NavLink>
+              )}
+              </li>
+            </ul>
+          </div>
+          <Link to="/">
+            <img
+              className="h-20 rounded-full"
+              src="https://i.ibb.co/mCyDj2L5/8d513379-4732-472f-92a4-a63532af9b92.png"
+              alt=""
+            />
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 gap-3">{links}</ul>
-        </div>
-        <div className="navbar-end">
-          {user ? (
-            <button onClick={handleSignOut} className="btn">
-              SignOut
-            </button>
-          ) : (
-            <Link to="/register" className="btn">
-              Register
-            </Link>
-          )}
-        </div>
-        {/* image with drop down */}
-        <div className="dropdown">
-          <div tabIndex={0} role="button">
-            <img className="rounded-full" src={user?.photoURL} alt="" />
-          </div>
-          <ul
-            tabIndex={0}
-            className="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow"
-          >
-            <li>
-              <NavLink to="/myReview">My Review</NavLink>
-            </li>
-            <li>
-              <NavLink to="/myFavorite">My Favorite</NavLink>
-            </li>
-            <li>
-              <NavLink to="/postReview">Add Review</NavLink>
-            </li>
+          <ul className="menu menu-horizontal px-1">
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/profile">My Profile</NavLink>
+              <details>
+                <summary>Profile</summary>
+                <ul className="p-2 bg-base-100 w-40 z-1">
+                  <li className="bg-blue-300">
+                    <NavLink to="/myFavorite">My Favorite</NavLink>
+                  </li>
+                </ul>
+              </details>
             </li>
             <li>
-              <NavLink to="/register">Register</NavLink>
+              {user ? (
+                <li onClick={handleSignOut} className="">
+                  SignOut
+                </li>
+              ) : (
+                <NavLink to="/register">Register</NavLink>
+              )}
             </li>
           </ul>
         </div>
-        <div>
+        {/* image */}
+        <div className="navbar-end mx-5">
+          <div className="dropdown">
+            <div tabIndex={0} role="button">
+              <img
+                className="rounded-full h-10"
+                src={user?.photoURL}
+                alt="Image not found"
+              />
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu bg-blue-300 rounded-box z-10 w-52 p-2 shadow"
+            >
+              <li>
+                <NavLink to="/myReview">My Review</NavLink>
+              </li>
+              <li>
+                <NavLink to="/postReview">Add Review</NavLink>
+              </li>
+              <li>
+                {user ? (
+                  <li onClick={handleSignOut} className="">
+                    SignOut
+                  </li>
+                ) : (
+                  <Link to="/register">
+                    Register
+                  </Link>
+                )}
+              </li>
+            </ul>
+          </div>
+        </div>
+        {/* theme */}
+        <div className="bg-white rounded-full">
           <input
             onChange={(e) => handleTheme(e.target.checked)}
             type="checkbox"
