@@ -10,6 +10,8 @@ import MyReview from "../Components/MyReview/MyReview";
 import EditReview from "../Components/EditReview/EditReview";
 import MyFavorite from "../Components/MyFavorite/MyFavorite";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import FoodDetails from "../Components/FoodDetails/FoodDetails";
+import AllCardPage from "../Components/AllCardPage/AllCardPage";
 
 const router = createBrowserRouter([
   {
@@ -71,9 +73,22 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/foodDetails/:id",
+        element: (
+          <PrivateRoute>
+            <FoodDetails></FoodDetails>
+          </PrivateRoute>
+        ),
+        loader: ({params}) => fetch(`http://localhost:3000/userReview/${params.id}`)
+      },
+      {
+        path:'/allCard',
+        element:<AllCardPage></AllCardPage>,
+      },
+      {
         path: "/*",
-        element:<ErrorPage></ErrorPage>
-      }
+        element: <ErrorPage></ErrorPage>,
+      },
     ],
   },
 ]);

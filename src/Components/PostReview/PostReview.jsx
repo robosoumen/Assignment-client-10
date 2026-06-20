@@ -16,7 +16,8 @@ const PostReview = () => {
     const foodImage = e.target.foodImage.value;
     const restaurantName = e.target.restaurantName.value;
     const location = e.target.location.value;
-    const text = e.target.textArea.value
+    const text = e.target.textArea.value;
+    const reviewerName = e.target.reviewerName.value;
 
     const newReview = {
       foodName,
@@ -26,7 +27,8 @@ const PostReview = () => {
       currentDate,
       location,
       rating,
-      text
+      text,
+      reviewerName
     };
 
     console.log(newReview)
@@ -63,6 +65,14 @@ const PostReview = () => {
     <div className="flex items-center justify-center">
       <form onSubmit={handleReview}>
         <fieldset className="fieldset">
+          <label className="label">Your Name</label>
+          <input
+            name="reviewerName"
+            type="text"
+            className="input"
+            placeholder="Food Name"
+            required
+          />
           <label className="label">Food Name</label>
           <input
             name="foodName"

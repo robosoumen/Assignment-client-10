@@ -10,10 +10,14 @@ const Home = () => {
     return (
         <div className='w-11/12 mx-auto'>
             {/* slider */}
-            <Suspense fallback={<span className="loading loading-ring loading-xl flex mx-auto my-40"></span>}> <Slider allReviewPromise={allReviewPromise}></Slider></Suspense>
-            <Suspense fallback={<span className="loading loading-ring loading-xl flex mx-auto my-40"></span>}>
+           <div className='mt-10'>
+             <Suspense fallback={<span className="loading loading-ring loading-xl flex mx-auto my-40"></span>}> <Slider allReviewPromise={allReviewPromise}></Slider></Suspense>
+           </div>
+           <div>
+             <Suspense fallback={<span className="loading loading-ring loading-xl flex mx-auto my-40"></span>}>
                  <AllReview allReviewPromise={allReviewPromise}></AllReview>
             </Suspense>
+           </div>
         </div>
     );
 };

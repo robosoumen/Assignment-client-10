@@ -1,5 +1,6 @@
 import React, { use, useState } from "react";
 import Reviews from "./Reviews";
+import { Link } from "react-router";
 
 const AllReview = ({ allReviewPromise }) => {
   const allReviewData = use(allReviewPromise);
@@ -37,6 +38,9 @@ const AllReview = ({ allReviewPromise }) => {
         {newData.map((singleReview) => (
           <Reviews key={singleReview._id} singleReview={singleReview}></Reviews>
         ))}
+      </div>
+      <div className="flex justify-center">
+        <Link to='/allCard' className="btn btn-primary">Show All</Link>
       </div>
     </div>
   );

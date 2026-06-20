@@ -1,9 +1,10 @@
 import React from "react";
 import toast from "react-hot-toast";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router";
 
 const Reviews = ({ singleReview }) => {
-  const { foodImage, restaurantName, userEmail, currentDate, _id, foodName, rating } =
+  const { foodImage, restaurantName, userEmail, _id, foodName, rating } =
     singleReview;
   const favoritePostData = {
     foodImage: foodImage,
@@ -32,29 +33,37 @@ const Reviews = ({ singleReview }) => {
     <div className=" p-3">
       <div className="card bg-base-100 w-96 shadow-sm">
         <div className="card-body">
-          <h2 className="card-title">Restaurant Name:{restaurantName}</h2>
+          <h2 className="card-title">Food Name : {foodName}</h2>
           <div className="flex items-center">
-            <p>Food Name:{foodName}</p>
+            <p>Restaurant : {restaurantName}</p>
             <button
               onClick={handleAddFavorite}
               className="btn bg-red-500 text-white"
             >
               Add Favorite
             </button>
+            <Link
+              to={`/foodDetails/${_id}`}
+              className="btn bg-red-500 text-white"
+            >
+              View Details
+            </Link>
           </div>
           <div className="flex">
             {[1, 2, 3, 4, 5].map((star) => (
               <FaStar
                 key={star}
-                className={
-                  star <= rating ? "text-yellow-500" : "text-gray-300"
-                }
+                className={star <= rating ? "text-yellow-500" : "text-gray-300"}
               />
             ))}
           </div>
         </div>
         <figure>
-          <img className="w-[400px] h-[300px]" src={foodImage} alt="FoodImage..." />
+          <img
+            className="w-[400px] h-[300px]"
+            src={foodImage}
+            alt="FoodImage..."
+          />
         </figure>
       </div>
     </div>
