@@ -105,7 +105,7 @@ const PostReview = () => {
             required
           />
           {/* text area */}
-          <textarea name="textArea" rows="8" className="w-full border p-3 rounded" />
+          <textarea name="textArea" rows="8" placeholder="give feedback..." className="w-full border p-3 rounded" />
           {/* star */}
           <div className="flex gap-1">
             {[1, 2, 3, 4, 5].map((star) => (

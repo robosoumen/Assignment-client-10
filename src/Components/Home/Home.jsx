@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import AllReview from '../AllReview/AllReview';
 import Slider from '../Slider/Slider';
+import QuickRecipe from '../QuickRecipe/QuickRecipe';
 
 
 
@@ -17,6 +18,10 @@ const Home = () => {
              <Suspense fallback={<span className="loading loading-ring loading-xl flex mx-auto my-40"></span>}>
                  <AllReview allReviewPromise={allReviewPromise}></AllReview>
             </Suspense>
+           </div>
+           <div className='space-y-3 mb-3'>
+                <p className='text-center font-bold text-3xl text-blue-600'>3 easy and quick recipe</p>
+                <QuickRecipe></QuickRecipe>
            </div>
         </div>
     );
