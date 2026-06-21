@@ -1,17 +1,21 @@
-import React from "react";
+import React, { use } from "react";
 import toast from "react-hot-toast";
 import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router";
+import { AuthContext } from "../../Context/AuthContext";
 
 const SingleCard = ({ data }) => {
-  console.log("data", data);
+  console.log("data from single card page", data);
 
-   const favoritePostData = {
+  const { user } = use(AuthContext);
+  console.log("user email from  card", user);
+
+  const favoritePostData = {
     foodImage: data.foodImage,
     foodName: data.foodName,
     restaurantName: data.restaurantName,
     currentDate: new Date().toISOString().split("T")[0],
-    userEmail: data.userEmail,
+    userEmail: user?.email,
   };
 
   const handleAddFavorite = () => {
@@ -41,7 +45,7 @@ const SingleCard = ({ data }) => {
                 onClick={handleAddFavorite}
                 className="btn bg-red-500 text-white"
               >
-                Add Favorite
+                put Favorite
               </button>
               <Link
                 to={`/foodDetails/${data._id}`}

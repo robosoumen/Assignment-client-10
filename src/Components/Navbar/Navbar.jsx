@@ -4,6 +4,7 @@ import { AuthContext } from "../../Context/AuthContext";
 import { Link } from "react-router";
 import toast from "react-hot-toast";
 import "./Navbar.css";
+import { TbGridDots } from "react-icons/tb";
 
 const Navbar = () => {
   const { user, logOut } = use(AuthContext);
@@ -112,14 +113,16 @@ const Navbar = () => {
           </ul>
         </div>
         {/* image */}
-        <div className="navbar-end mx-5">
+        <div className="navbar-end mx-10">
           <div className="dropdown">
             <div tabIndex={0} role="button">
-              <img
+               {
+                user?.photoURL ? <img
                 className="rounded-full h-10"
                 src={user?.photoURL}
                 alt="Image not found"
-              />
+              /> : <TbGridDots />
+               }
             </div>
             <ul
               tabIndex={0}
