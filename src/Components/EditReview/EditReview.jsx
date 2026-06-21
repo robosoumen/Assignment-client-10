@@ -20,7 +20,7 @@ const EditReview = () => {
     const editedReview = { foodImage, foodName, restaurantName };
 
     // update kora
-    fetch(`http://localhost:3000/userReview/${data._id}`,{
+    fetch(`https://khabar-katha-server.vercel.app/userReview/${data._id}`,{
         method:'PUT',
         headers:{
             'content-type':'application/json'

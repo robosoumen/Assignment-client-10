@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router';
 import AllCard from './AllCard';
 
 const AllCardPage = () => {
-    const allCardData = fetch('http://localhost:3000/allCard').then(res => res.json());
+    const allCardData = fetch('https://khabar-katha-server.vercel.app/allCard').then(res => res.json());
     console.log('all card data is', allCardData)
     return (
         <div>

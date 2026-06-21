@@ -31,7 +31,7 @@ const PostReview = () => {
       reviewerName
     };
 
-    fetch("http://localhost:3000/postReview", {
+    fetch("https://khabar-katha-server.vercel.app/postReview", {
       method: "POST",
       headers: {
         "content-type": "application/json",

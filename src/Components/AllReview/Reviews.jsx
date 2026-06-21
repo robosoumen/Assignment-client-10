@@ -15,7 +15,7 @@ const Reviews = ({ singleReview }) => {
   };
 
   const handleAddFavorite = () => {
-    fetch("http://localhost:3000/favorite", {
+    fetch("https://khabar-katha-server.vercel.app/favorite", {
       method: "POST",
       headers: {
         "content-type": "application/json",

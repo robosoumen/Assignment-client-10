@@ -62,7 +62,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/userReview/${params.id}`),
+          fetch(`https://khabar-katha-server.vercel.app/userReview/${params.id}`),
       },
       {
         path: "/myFavorite",
@@ -79,7 +79,7 @@ const router = createBrowserRouter([
             <FoodDetails></FoodDetails>
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`http://localhost:3000/userReview/${params.id}`)
+        loader: ({params}) => fetch(`https://khabar-katha-server.vercel.app/userReview/${params.id}`)
       },
       {
         path:'/allCard',

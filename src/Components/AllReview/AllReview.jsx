@@ -13,7 +13,7 @@ const AllReview = ({ allReviewPromise }) => {
         setLoading(true)
         console.log(search)
 
-        fetch(`http://localhost:3000/search?search=${search}`)
+        fetch(`https://khabar-katha-server.vercel.app/search?search=${search}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);

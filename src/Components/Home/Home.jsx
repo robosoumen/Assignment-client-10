@@ -7,7 +7,7 @@ import TipsForCook from '../TipsForCook/TipsForCook';
 
 
 const Home = () => {
-    const allReviewPromise = fetch('http://localhost:3000/allReview').then(res => res.json())
+    const allReviewPromise = fetch('https://khabar-katha-server.vercel.app/allReview').then(res => res.json())
     console.log(allReviewPromise)
     return (
         <div className='w-11/12 mx-auto'>

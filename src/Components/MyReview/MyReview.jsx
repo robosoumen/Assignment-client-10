@@ -10,7 +10,7 @@ const MyReview = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/userReview?email=${user?.email}`)
+      fetch(`https://khabar-katha-server.vercel.app/userReview?email=${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
           console.log("userData of review", data);
@@ -30,7 +30,7 @@ const MyReview = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed)
-        fetch(`http://localhost:3000/userReview/${_id}`, {
+        fetch(`https://khabar-katha-server.vercel.app/userReview/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

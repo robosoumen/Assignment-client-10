@@ -10,7 +10,7 @@ const MyFavorite = () => {
   console.log("after favorite page fetch data", newData);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/my-favorite?email=${user.email}`)
+    fetch(`https://khabar-katha-server.vercel.app/my-favorite?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setNewData(data);
@@ -29,7 +29,7 @@ const MyFavorite = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed)
-        fetch(`http://localhost:3000/delete/${_id}`, {
+        fetch(`https://khabar-katha-server.vercel.app/delete/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
