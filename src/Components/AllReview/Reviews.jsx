@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Reviews = ({ singleReview }) => {
-  const { foodImage, restaurantName, userEmail, _id, foodName, rating } =
+  const { foodImage, restaurantName, _id, foodName, rating } =
     singleReview;
 
     const {user} = use(AuthContext)
