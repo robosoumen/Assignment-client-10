@@ -4,7 +4,6 @@ import AllCard from './AllCard';
 
 const AllCardPage = () => {
     const allCardData = fetch('https://khabar-katha-server.vercel.app/allCard').then(res => res.json());
-    console.log('all card data is', allCardData)
     return (
         <div>
             <Suspense fallback={<span className="loading loading-dots loading-xl flex mx-auto"></span>}>

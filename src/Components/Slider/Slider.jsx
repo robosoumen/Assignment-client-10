@@ -9,7 +9,6 @@ import "swiper/css/scrollbar";
 
 const Slider = ({ allReviewPromise }) => {
   const sliderData = use(allReviewPromise);
-  console.log("slider data", sliderData);
   return (
     <div>
       <Swiper
@@ -20,7 +19,6 @@ const Slider = ({ allReviewPromise }) => {
         navigation
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={() => console.log("slide change")}
       >
         {sliderData.map((slider) => (

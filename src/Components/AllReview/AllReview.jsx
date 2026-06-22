@@ -11,12 +11,10 @@ const AllReview = ({ allReviewPromise }) => {
         e.preventDefault()
         const search = e.target.search.value;
         setLoading(true)
-        console.log(search)
 
         fetch(`https://khabar-katha-server.vercel.app/search?search=${search}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             setNewData(data)
             setLoading(false)
         })
@@ -40,7 +38,7 @@ const AllReview = ({ allReviewPromise }) => {
         ))}
       </div>
       <div className="flex justify-center">
-        <Link to='/allCard' className="btn btn-primary">Show All</Link>
+        <Link to='/allCard' className="btn btn-primary">Show All Review</Link>
       </div>
     </div>
   );

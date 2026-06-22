@@ -14,7 +14,6 @@ const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  console.log('user from AuthProvider', user)
   const [loading, setLoading] = useState(true);
 
   const signUp = (email, password) => {

@@ -7,8 +7,6 @@ const MyFavorite = () => {
   const [newData, setNewData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  console.log("after favorite page fetch data", newData);
-
   useEffect(() => {
     fetch(`https://khabar-katha-server.vercel.app/my-favorite?email=${user.email}`)
       .then((res) => res.json())
@@ -55,24 +53,23 @@ const MyFavorite = () => {
   }
   return (
     <div>
-      <p>My Favorite</p>
       <div>
         <div className="overflow-x-auto">
-          <table className="table">
+          <table className="table w-full">
             {/* head */}
             <thead>
               <tr>
                 <th>Serial No.</th>
                 <th>Name</th>
                 <th>Restaurant Name</th>
-                <th>Date</th>
-                <th>Post By</th>
+                <th className="hidden md:table-cell">Date</th>
+                <th className="hidden lg:table-cell">Post By</th>
                 <th>Delete</th>
               </tr>
             </thead>
             <tbody>
               {/* row 1 */}
-              {newData.map((data, index) => (
+              {newData.map((NData, index) => (
                 <tr key={index}>
                   <th>{index + 1}</th>
                   <td>
@@ -80,27 +77,27 @@ const MyFavorite = () => {
                       <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                           <img
-                            src={data.foodImage}
+                            src={NData.foodImage}
                             alt="Avatar Tailwind CSS Component"
                           />
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">{data.foodName}</div>
+                        <div className="font-bold">{NData.foodName}</div>
                       </div>
                     </div>
                   </td>
-                  <td>{data.restaurantName}</td>
-                  <td>{data.currentDate}</td>
-                  <th>
-                    <button className="btn btn-ghost btn-xs">
-                      {data.userEmail}
+                  <td>{NData.restaurantName}</td>
+                  <td className="hidden md:table-cell">{NData.currentDate}</td>
+                  <th className="hidden lg:table-cell">
+                    <button className="btn btn-ghost btn-xs break-all">
+                      {NData.postedBy}
                     </button>
                   </th>
                   <th>
                     <button
-                      onClick={() => handleDelete(data._id)}
-                      className="btn btn-xs"
+                      onClick={() => handleDelete(NData._id)}
+                      className="btn btn-error btn-xs"
                     >
                       Delete
                     </button>

@@ -4,7 +4,6 @@ import { useLoaderData } from "react-router";
 
 const FoodDetails = () => {
   const data = useLoaderData();
-  console.log("food details page", data);
   return (
     <div className="w-8/12 mx-auto mt-4 mb-4 space-y-2 bg-amber-200 p-7 rounded-2xl">
       <div>

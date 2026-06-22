@@ -26,7 +26,6 @@ const Register = () => {
     const email = e.target.email.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
-    console.log(name, email, photo, password);
 
     if (!passwordValidation.test(password)) {
       setPasswordError(

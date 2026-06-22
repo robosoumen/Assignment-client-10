@@ -6,14 +6,12 @@ import { Link } from "react-router";
 const MyReview = () => {
   const { user } = use(AuthContext);
   const [userData, setUserData] = useState([]);
-  console.log(userData);
 
   useEffect(() => {
     if (user?.email) {
       fetch(`https://khabar-katha-server.vercel.app/userReview?email=${user?.email}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log("userData of review", data);
           setUserData(data);
         });
     }
@@ -35,7 +33,6 @@ const MyReview = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log("after delete data", data);
             if (data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",

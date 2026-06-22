@@ -10,9 +10,7 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
 
   const location = useLocation();
-  console.log("location login", location);
   const navigate = useNavigate();
-  console.log("login navigate", navigate);
 
   const passwordValidation = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
@@ -27,24 +25,19 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     if (!passwordValidation.test(password)) {
-      console.log("password DidNot match");
       setPasswordError(
         "Password must have 6+ character with uppercase & lowercase",
       );
       return;
     }
 
-    console.log(email, password);
-
     signIn(email, password)
       .then((result) => {
-        console.log(result.user);
         const user = result.user;
         setUser(user);
         navigate(location.state || "/");
       })
       .catch((error) => {
-        console.log(error);
         toast.error(error.message)
       });
   };

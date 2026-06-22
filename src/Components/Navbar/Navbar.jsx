@@ -68,13 +68,16 @@ const Navbar = () => {
                 </ul>
               </li>
               <li>
+                <NavLink to="/allCard">All Review</NavLink>
+              </li>
+              <li>
                 {user ? (
-                <li onClick={handleSignOut} className="">
-                  SignOut
-                </li>
-              ) : (
-                <NavLink to="/register">Register</NavLink>
-              )}
+                  <Link onClick={handleSignOut} className="">
+                    SignOut
+                  </Link>
+                ) : (
+                  <NavLink to="/register">Register</NavLink>
+                )}
               </li>
             </ul>
           </div>
@@ -102,10 +105,13 @@ const Navbar = () => {
               </details>
             </li>
             <li>
+              <NavLink to="/allCard">All Review</NavLink>
+            </li>
+            <li>
               {user ? (
-                <li onClick={handleSignOut} className="">
+                <Link onClick={handleSignOut} className="">
                   SignOut
-                </li>
+                </Link>
               ) : (
                 <NavLink to="/register">Register</NavLink>
               )}
@@ -116,13 +122,15 @@ const Navbar = () => {
         <div className="navbar-end mx-10">
           <div className="dropdown">
             <div tabIndex={0} role="button">
-               {
-                user?.photoURL ? <img
-                className="rounded-full h-10"
-                src={user?.photoURL}
-                alt="Image not found"
-              /> : <TbGridDots />
-               }
+              {user?.photoURL ? (
+                <img
+                  className="rounded-full h-10"
+                  src={user?.photoURL}
+                  alt="Image not found"
+                />
+              ) : (
+                <TbGridDots />
+              )}
             </div>
             <ul
               tabIndex={0}
@@ -136,13 +144,11 @@ const Navbar = () => {
               </li>
               <li>
                 {user ? (
-                  <li onClick={handleSignOut} className="">
+                  <Link onClick={handleSignOut} className="">
                     SignOut
-                  </li>
-                ) : (
-                  <Link to="/register">
-                    Register
                   </Link>
+                ) : (
+                  <Link to="/register">Register</Link>
                 )}
               </li>
             </ul>

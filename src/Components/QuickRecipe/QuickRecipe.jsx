@@ -2,7 +2,7 @@ import React from "react";
 
 const QuickRecipe = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 space-y-3">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-y-3">
       {/* card */}
       <div>
         <div className="card bg-base-100 w-96 shadow-sm">

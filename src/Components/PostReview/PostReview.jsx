@@ -40,7 +40,6 @@ const PostReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("after post review", data);
         Swal.fire({
           position: "top-end",
           icon: "success",

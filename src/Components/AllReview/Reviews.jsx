@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Reviews = ({ singleReview }) => {
-  const { foodImage, restaurantName, _id, foodName, rating } =
+  const { foodImage, restaurantName, _id, foodName, rating, reviewerName } =
     singleReview;
 
     const {user} = use(AuthContext)
@@ -16,6 +16,7 @@ const Reviews = ({ singleReview }) => {
     restaurantName: restaurantName,
     currentDate: new Date().toISOString().split("T")[0],
     userEmail: user?.email,
+    postedBy: reviewerName,
   };
 
   const handleAddFavorite = () => {
@@ -28,7 +29,6 @@ const Reviews = ({ singleReview }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         toast.success("Favorite Food Added");
       });
   };
@@ -44,7 +44,7 @@ const Reviews = ({ singleReview }) => {
               onClick={handleAddFavorite}
               className="btn bg-red-500 text-white"
             >
-              Put Your Favorite
+              Add Favorite
             </button>
             <Link
               to={`/foodDetails/${_id}`}

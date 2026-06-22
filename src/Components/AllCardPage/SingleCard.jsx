@@ -5,10 +5,8 @@ import { Link } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 
 const SingleCard = ({ data }) => {
-  console.log("data from single card page", data);
 
-  const { user } = use(AuthContext);
-  console.log("user email from  card", user);
+  const {user} = use(AuthContext);
 
   const favoritePostData = {
     foodImage: data.foodImage,
@@ -16,7 +14,9 @@ const SingleCard = ({ data }) => {
     restaurantName: data.restaurantName,
     currentDate: new Date().toISOString().split("T")[0],
     userEmail: user?.email,
+    postedBy: data.reviewerName,
   };
+  console.log('favorite post data from single card',favoritePostData)
 
   const handleAddFavorite = () => {
     fetch("https://khabar-katha-server.vercel.app/favorite", {
@@ -28,7 +28,6 @@ const SingleCard = ({ data }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         toast.success("Favorite Food Added");
       });
   };
@@ -45,7 +44,7 @@ const SingleCard = ({ data }) => {
                 onClick={handleAddFavorite}
                 className="btn bg-red-500 text-white"
               >
-                put Favorite
+                Add Favorite
               </button>
               <Link
                 to={`/foodDetails/${data._id}`}
